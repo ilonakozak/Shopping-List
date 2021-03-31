@@ -13,7 +13,35 @@
 </head>
 
 <body>
-
+    <section class="section-center">
+        <!-- Form -->
+        <form class="shopping-form">
+            <p class="alert"></p>
+            <h3>Shopping List</h3>
+            <div class="form-control">
+                <input type="text" id="shopping" placeholder="e.g. bread" />
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+        <!-- List -->
+        <div class="shopping-container">
+            <div class="shopping-list">
+                <article class="shopping-item">
+                    <p class="title">item</p>
+                    <div class="btn-container">
+                        <button type="button" class="edit-btn">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button type="button" class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+            <!-- Clear Button -->
+            <button type="button" , class="clear-btn">Clear Items</button>
+        </div>
+    </section>
     <script src="main.js"></script>
 </body>
 

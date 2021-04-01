@@ -101,12 +101,30 @@ function clearItems() {
   //localStorage.removeItem("list");
 }
 
-// set back to default
+// delete item
+function deleteItem(e) {
+  const element = e.currentTarget.parentElement.parentElement;
+  const id = element.dataset.id;
+  list.removeChild(element);
+
+  if (list.children.length === 0) {
+    container.classList.remove("show-container");
+  }
+  displayAlert("item removed", "success");
+
+  setBackToDefault();
+  // remove from local storage
+  removeFromLocalStorage(id);
+}
+
+
+
+// set backt to defaults
 function setBackToDefault() {
-shopping.value = "";
-editFlag = false;
-editID = "";
-submitBtn.textContent = "submit";
+  grocery.value = "";
+  editFlag = false;
+  editID = "";
+  submitBtn.textContent = "submit";
 }
 
 /* LOCAL STORAGE */

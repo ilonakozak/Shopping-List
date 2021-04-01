@@ -14,7 +14,8 @@ let editID = "";
 /* EVENT LISTENER */
 // submit form
 form.addEventListener("submit", addItem);
-
+// clear list
+clearBtn.addEventListener("click", clearItems);
 
 
 /* FUNCTIONS */
@@ -84,6 +85,20 @@ function displayAlert(text, action) {
     alert.textContent = "";
     alert.classList.remove(`alert-${action}`);
   }, 1000);
+}
+
+// clear items
+function clearItems() {
+  const items = document.querySelectorAll(".shopping-item");
+  if (items.length > 0) {
+    items.forEach(function (item) {
+      list.removeChild(item);
+    });
+  }
+  container.classList.remove("show-container");
+  displayAlert("empty list", "success");
+  setBackToDefault();
+  //localStorage.removeItem("list");
 }
 
 // set back to default

@@ -22,7 +22,7 @@ form.addEventListener("submit", addItem);
 // add item
 function addItem(e) {
   e.preventDefault();
-  const value = grocery.value;
+  const value = shopping.value;
   const id = new Date().getTime().toString();
 
   if (value !== "" && !editFlag) {
@@ -30,7 +30,7 @@ function addItem(e) {
     let attr = document.createAttribute("data-id");
     attr.value = id;
     element.setAttributeNode(attr);
-    element.classList.add("grocery-item");
+    element.classList.add("shopping-item");
     element.innerHTML = `<p class="title">${value}</p>
             <div class="btn-container">
               <!-- edit btn -->
@@ -88,7 +88,10 @@ function displayAlert(text, action) {
 
 // set back to default
 function setBackToDefault() {
-
+shopping.value = "";
+editFlag = false;
+editID = "";
+submitBtn.textContent = "submit";
 }
 
 /* LOCAL STORAGE */

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@300&display=swap');
 @import url('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
 
 /* GENERAL STYLES */
@@ -13,10 +13,11 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f3f3f3;
-  color: #273e4b;
+  color: #74335d;
   line-height: 1.5;
   font-size: 0.875rem;
+  background-image: url(images/bcg_top.png), url(images/background.gif);
+    background-repeat: no-repeat, repeat;
 }
 
 ul {
@@ -39,12 +40,13 @@ h1,
 h2,
 h3,
 h4 {
-  color: #273e4b;
+  color: #74335d;
   margin-bottom: 1.5rem;
   text-align: center;
   letter-spacing: 0.25rem;
   text-transform: capitalize;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
   line-height: 1.25;
 }
 
@@ -53,11 +55,11 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.25rem;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 2rem;
 }
 
 h4 {
@@ -141,22 +143,22 @@ p {
 #shopping {
   padding: 0.25rem;
   padding-left: 1rem;
-  background: #f3f3f3;
+  background: #fff4f6;
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
   border-color: transparent;
   font-size: 1rem;
   flex: 1 0 auto;
-  color: #557991;
+  color:  #74335d;
 }
 
 #shopping::placeholder {
   font-family: "Open Sans", sans-serif;
-  color: #557991;
+  color: #74335d;
 }
 
 .submit-btn {
-  background: #a0b4cd;
+  background: #c2e5f7;
   border-color: transparent;
   flex: 0 0 5rem;
   display: grid;
@@ -167,14 +169,13 @@ p {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   cursor: pointer;
-  content: #435975;
+  color: #74335d;
   transition: all 0.3s linear;
-  ;
   font-size: 0.85rem;
 }
 
 .submit-btn:hover {
-  background: #435975;
+  background: #89cdf0;
   color: #fff;
 }
 
@@ -195,7 +196,6 @@ p {
   justify-content: space-between;
   margin-bottom: 0.5rem;
   transition: all 0.3s linear;
-  ;
   padding: 0.25rem 1rem;
   border-radius: 0.25rem;
   text-transform: capitalize;
@@ -203,7 +203,7 @@ p {
 
 .shopping-item:hover {
   color: #557991;
-  background: #f3f3f3;
+  background: #fff4f6;
 }
 
 .shopping-item:hover .title {
@@ -212,7 +212,7 @@ p {
 
 .title {
   margin-bottom: 0;
-  color: #273e4b;
+  color: #74335d;
   letter-spacing: 2px;
   transition: all 0.3s linear;
   ;
@@ -269,29 +269,5 @@ p {
 @media screen and (min-width: 992px) {
   .section-center {
     width: 95vw;
-  }
-}
-
-@media screen and (min-width: 800px) {
-  h1 {
-    font-size: 4rem;
-  }
-  h2 {
-    font-size: 2.5rem;
-  }
-  h3 {
-    font-size: 1.75rem;
-  }
-  h4 {
-    font-size: 1rem;
-  }
-  body {
-    font-size: 1rem;
-  }
-  h1,
-  h2,
-  h3,
-  h4 {
-    line-height: 1;
   }
 }

@@ -158,7 +158,7 @@ p {
 }
 
 .submit-btn {
-  background: #c2e5f7;
+  background: #ec899c;
   border-color: transparent;
   flex: 0 0 5rem;
   display: grid;
@@ -175,7 +175,7 @@ p {
 }
 
 .submit-btn:hover {
-  background: #89cdf0;
+  background: #ec5d79;
   color: #fff;
 }
 
@@ -230,19 +230,19 @@ p {
 }
 
 .edit-btn {
-  color: #bbc313;
+  color: #7fc8ee;
 }
 
 .edit-btn:hover {
-  color: #868c12;
+  color: #557991;
 }
 
 .delete-btn {
-  color: #ef696a;
+  color: #ec899c;
 }
 
 .delete-btn:hover {
-  color: #be1e26;
+  color: #ec5d79;
 }
 
 .clear-btn {
@@ -253,7 +253,7 @@ p {
   align-items: center;
   background: transparent;
   border-color: transparent;
-  color: #ef696a;
+  color: #ec899c;
   margin: 0 auto;
   font-size: 0.85rem;
   letter-spacing: 0.25rem;
@@ -263,7 +263,7 @@ p {
 }
 
 .clear-btn:hover {
-  color: #be1e26;
+  color: #ec5d79;
 }
 
 @media screen and (min-width: 992px) {

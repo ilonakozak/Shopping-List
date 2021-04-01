@@ -1,4 +1,5 @@
 /* SELECT ITEMS */
+
 const form = document.querySelector(".shopping-form");
 const alert = document.querySelector(".alert");
 const shopping = document.getElementById("shopping");
@@ -11,12 +12,13 @@ let editElement;
 let editFlag = false;
 let editID = "";
 
-/* EVENT LISTENER */
+/* EVENT LISTENERS */
 // submit form
 form.addEventListener("submit", addItem);
 // clear list
 clearBtn.addEventListener("click", clearItems);
-
+// display items onload
+window.addEventListener("DOMContentLoaded", setupItems);
 
 /* FUNCTIONS */
 
@@ -26,7 +28,7 @@ function addItem(e) {
   const value = shopping.value;
   const id = new Date().getTime().toString();
 
-  if (value !== "" && !editFlag) {
+  if (value && !editFlag) {
     const element = document.createElement("article");
     let attr = document.createAttribute("data-id");
     attr.value = id;
@@ -52,16 +54,12 @@ function addItem(e) {
 
     // append child
     list.appendChild(element);
-
     // display alert
     displayAlert("item added to the list", "success");
-
     // show container
     container.classList.add("show-container");
-
     // set local storage
     addToLocalStorage(id, value);
-
     // set back to default
     setBackToDefault();
   } else if (value && editFlag) {
@@ -79,7 +77,6 @@ function addItem(e) {
 function displayAlert(text, action) {
   alert.textContent = text;
   alert.classList.add(`alert-${action}`);
-
   // remove alert
   setTimeout(function () {
     alert.textContent = "";
@@ -96,41 +93,40 @@ function clearItems() {
     });
   }
   container.classList.remove("show-container");
-  displayAlert("empty list", "success");
+  displayAlert("empty list", "danger");
   setBackToDefault();
-  //localStorage.removeItem("list");
+  localStorage.removeItem("list");
 }
 
 // delete item
+
 function deleteItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
   const id = element.dataset.id;
+
   list.removeChild(element);
 
   if (list.children.length === 0) {
     container.classList.remove("show-container");
   }
-  displayAlert("item removed", "success");
+  displayAlert("item removed", "danger");
 
   setBackToDefault();
   // remove from local storage
   removeFromLocalStorage(id);
 }
-
 // edit item
 function editItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
-
   // set edit item
   editElement = e.currentTarget.parentElement.previousElementSibling;
-
   // set form value
-  grocery.value = editElement.innerHTML;
+  shopping.value = editElement.innerHTML;
   editFlag = true;
   editID = element.dataset.id;
+  //
   submitBtn.textContent = "edit";
 }
-
 // set backt to defaults
 function setBackToDefault() {
   shopping.value = "";
@@ -139,8 +135,82 @@ function setBackToDefault() {
   submitBtn.textContent = "submit";
 }
 
-/* LOCAL STORAGE */
-function addToLocalStorage(id, value) {
+// ****** local storage **********
 
+// add to local storage
+function addToLocalStorage(id, value) {
+  const shopping = { id, value };
+  let items = getLocalStorage();
+  items.push(shopping);
+  localStorage.setItem("list", JSON.stringify(items));
 }
 
+function getLocalStorage() {
+  return localStorage.getItem("list")
+    ? JSON.parse(localStorage.getItem("list"))
+    : [];
+}
+
+function removeFromLocalStorage(id) {
+  let items = getLocalStorage();
+
+  items = items.filter(function (item) {
+    if (item.id !== id) {
+      return item;
+    }
+  });
+
+  localStorage.setItem("list", JSON.stringify(items));
+}
+function editLocalStorage(id, value) {
+  let items = getLocalStorage();
+
+  items = items.map(function (item) {
+    if (item.id === id) {
+      item.value = value;
+    }
+    return item;
+  });
+  localStorage.setItem("list", JSON.stringify(items));
+}
+
+/* SETUP ITEMS */
+
+function setupItems() {
+  let items = getLocalStorage();
+
+  if (items.length > 0) {
+    items.forEach(function (item) {
+      createListItem(item.id, item.value);
+    });
+    container.classList.add("show-container");
+  }
+}
+
+function createListItem(id, value) {
+  const element = document.createElement("article");
+  let attr = document.createAttribute("data-id");
+  attr.value = id;
+  element.setAttributeNode(attr);
+  element.classList.add("shopping-item");
+  element.innerHTML = `<p class="title">${value}</p>
+            <div class="btn-container">
+              <!-- edit btn -->
+              <button type="button" class="edit-btn">
+                <i class="fas fa-edit"></i>
+              </button>
+              <!-- delete btn -->
+              <button type="button" class="delete-btn">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          `;
+  // add event listeners to both buttons;
+  const deleteBtn = element.querySelector(".delete-btn");
+  deleteBtn.addEventListener("click", deleteItem);
+  const editBtn = element.querySelector(".edit-btn");
+  editBtn.addEventListener("click", editItem);
+
+  // append child
+  list.appendChild(element);
+}
